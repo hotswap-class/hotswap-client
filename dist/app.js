@@ -1,40 +1,14 @@
-"use strict";
-var electron = require("electron");
-var ClientApp = (function () {
-    function ClientApp() {
-        var _this = this;
-        this.app = electron.app;
-        this.BrowserWindow = electron.BrowserWindow;
-        this.createWindow = function () {
-            _this.mainWindow = new _this.BrowserWindow({
-                width: 800,
-                height: 600,
-                title: "Hospital",
-            });
-            _this.mainWindow.loadURL('file://' + __dirname + '/app/index.html');
-            _this.mainWindow.webContents.openDevTools();
-            _this.mainWindow.on('closed', function () {
-                this.mainWindow = null;
-            });
-        };
-        this.app.on('ready', this.createWindow);
-    }
-    return ClientApp;
-}());
-// export class Hospital{
-//     private app;
-//     private browser;
-//     constructor(){
-//         this.app = electron.app;
-//         this.browser = electron.BrowserWindow;
-//     }
-// }
-// const electron = require('electron');
+// import * as electron from 'electron';
+var electron = require('electron');
+var app = electron.app;
+var BrowserWindow = electron.BrowserWindow;
+var mainWindow;
 // Module to control application life.
 // Module to create native browser window.
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 // let mainWindow;
+app.on('ready', createWindow);
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Quit when all windows are closed.
@@ -52,3 +26,15 @@ app.on('activate', function () {
         createWindow();
     }
 });
+function createWindow() {
+    mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        title: "Hospital",
+    });
+    mainWindow.loadURL('file://' + __dirname + '/app/index.html');
+    mainWindow.webContents.openDevTools();
+    mainWindow.on('closed', function () {
+        mainWindow = null;
+    });
+}

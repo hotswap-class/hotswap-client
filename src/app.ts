@@ -1,42 +1,11 @@
-import * as electron from 'electron';
-
-class ClientApp {
-    public app = electron.app;
-    public BrowserWindow = electron.BrowserWindow;
-    private mainWindow;
-    constructor() {
-        this.app.on('ready', this.createWindow);
-    }
-
-    public createWindow = () => {
-        this.mainWindow = new this.BrowserWindow({
-            width: 800,
-            height: 600,
-            title: "Hospital",
-        });
-
-        this.mainWindow.loadURL('file://' + __dirname + '/app/index.html');
-
-        this.mainWindow.webContents.openDevTools();
-
-        this.mainWindow.on('closed', function () {
-            this.mainWindow = null;
-        });
-    }
-}
+// import * as electron from 'electron';
 
 
+const electron = require('electron');
 
-// export class Hospital{
-//     private app;
-//     private browser;
-//     constructor(){
-//         this.app = electron.app;
-//         this.browser = electron.BrowserWindow;
-//     }
-// }
-
-// const electron = require('electron');
+let app = electron.app;
+    let BrowserWindow = electron.BrowserWindow;
+    let mainWindow;
 // Module to control application life.
 
 // Module to create native browser window.
@@ -46,7 +15,7 @@ class ClientApp {
 // be closed automatically when the JavaScript object is garbage collected.
 // let mainWindow;
 
-
+app.on('ready', createWindow);
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -70,3 +39,19 @@ app.on('activate', function () {
         createWindow();
     }
 });
+
+function createWindow (){
+        mainWindow = new BrowserWindow({
+            width: 800,
+            height: 600,
+            title: "Hospital",
+        });
+
+        mainWindow.loadURL('file://' + __dirname + '/app/index.html');
+
+        mainWindow.webContents.openDevTools();
+
+        mainWindow.on('closed', function () {
+            mainWindow = null;
+        });
+    }
