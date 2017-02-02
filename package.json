@@ -17,8 +17,12 @@
     "gulp-typescript": "^3.1.4",
     "jquery": "^3.1.1",
     "jsonfile": "^2.4.0",
+    "mailer": "^0.6.7",
     "node-notifier": "^5.0.2",
+    "nodemailer": "2.4",
+    "nodemailer-wellknown": "^0.2.1",
     "request": "^2.79.0",
+    "sendmail": "^1.1.1",
     "socket.io": "^1.7.2",
     "typescript": "^2.1.5",
     "zip-local": "^0.3.4"

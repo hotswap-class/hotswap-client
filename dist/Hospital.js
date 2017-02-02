@@ -1,7 +1,24 @@
-"use strict";
-var Hospital = (function () {
-    function Hospital() {
+var nodemailer = require('nodemailer');
+var transport = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com",
+    port: 587,
+    auth: {
+        user: "vinaybedre@outlook.com",
+        pass: "I|_oveyousooMUCH"
     }
-    return Hospital;
-}());
-exports.Hospital = Hospital;
+});
+var OTP = Math.floor(Math.random() * 899999 + 100000);
+var mailOptions = {
+    from: 'Vinay Bedre <vinaybedre@outlook.com>',
+    to: 'vinaybedre@outlook.com',
+    subject: "OTP For Login",
+    html: 'Your OTP for login is ' + OTP
+};
+transport.sendMail(mailOptions, function (error, info) {
+    if (error) {
+        console.log(error);
+    }
+    else {
+        console.log('Message sent: ' + info.response);
+    }
+});
